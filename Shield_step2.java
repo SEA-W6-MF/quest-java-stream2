@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-public class Shield {
+public class Shield_step2 {
 
     public static void main(String[] args) {
 
@@ -14,15 +12,24 @@ public class Shield {
         names.add("Leopold Fitz");
         names.add("Jemma Simmons");
 
-        // : map names to agents list
-        List<Agent> agents = names.stream()
-                .map(item -> item.split(" "))
-                .map(babyAgent -> new Agent(babyAgent[0], babyAgent[1]))
-                .collect(Collectors.toList());
+        // TODO 1 : map names to agents list
+        // Create a method "map"
+        List<Agent> agents = map(names);
 
         showAgents(agents);
     }
 
+    private static List<Agent> map(List<String> names) {
+        List<Agent> agents = new ArrayList<>();
+
+        for (String item: names) {
+            String[] temp = item.split(" ");
+            Agent agent = new Agent(temp[0], temp[1]);
+            agents.add(agent);
+        }
+        return agents;
+    }
+    
     // don't touch anything here !
     private static void showAgents(List<Agent> agents) {
         System.out.println("\nAgents:");
